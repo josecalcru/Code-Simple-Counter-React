@@ -1,6 +1,7 @@
 //import react into the bundle
 import React from "react";
 import ReactDOM from "react-dom";
+import PropTypes from "prop-types";
 
 //include bootstrap npm library into the bundle
 import "bootstrap";
@@ -9,7 +10,26 @@ import "bootstrap";
 import "../styles/index.scss";
 
 //import your own components
-import { Home } from "./component/home.js";
+import { SecondsCounter } from "./component/SecondsCounter.js";
 
 //render your react application
-ReactDOM.render(<Home />, document.querySelector("#app"));
+
+let counter = 0;
+
+setInterval(function() {
+	let four = Math.floor(counter / 1000);
+	let three = Math.floor(counter / 100);
+	let two = Math.floor(counter / 10);
+	let one = Math.floor(counter);
+	counter++;
+
+	ReactDOM.render(
+		<SecondsCounter
+			digitOne={one}
+			digitTwo={two}
+			digitThree={three}
+			digitFour={four}
+		/>,
+		document.querySelector("#app")
+	);
+}, 1000);
